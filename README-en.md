@@ -6,7 +6,7 @@ It supports managing multiple accounts, 30‑second 6‑digit code refresh, coun
 
 Please select your language
 
-[中文](https://github.com/webcat-hue/webcatt/blob/main/README-zh.md) [English](https://github.com/webcat-hue/webcatt/blob/main/README-en.md)
+[中文](https://github.com/webcat-hue/webcatt/blob/main/README.md) [English](https://github.com/webcat-hue/webcatt/blob/main/README-en.md)
 
 
 ## 2. Usage
