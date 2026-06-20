@@ -1,4 +1,5 @@
 # webcatt
+![界面预览](./image/1.jpg)
 一、功能简介
  
 本工具为纯前端本地运行的TOTP动态验证码生成器，遵循 RFC6238 标准，算法与Google Authenticator、Microsoft Authenticator通用。
