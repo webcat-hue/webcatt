@@ -6,12 +6,10 @@
 支持多账号密钥管理、30秒自动刷新6位动态码、倒计时提示、密钥删除功能。
 
 
-# 选择语言 / Select Language / 言語選択
 
-&nbsp;&nbsp;[中文](README-zh.md)&nbsp;&nbsp;|&nbsp;&nbsp;
-[English](README-en.md)&nbsp;&nbsp;|&nbsp;&nbsp;
+[中文](README-zh.md)
+[English](README-en.md) 
 [日本語](README-ja.md)
-
 
 
 二、使用步骤
