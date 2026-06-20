@@ -2,7 +2,7 @@
 # 选择语言
 <div style="display:flex;gap:40px;justify-content:center;font-size:20px;padding:20px;">
 <a href="README‑zh.md">中文</a>
-<a href="README‑en.md">English</a>
+<a href="https://github.com/webcat-hue/webcatt/blob/main/README%E2%80%91en.md">English</a>
 <a href="README‑ja.md">日本語</a>
 </div>
 一、功能简介
