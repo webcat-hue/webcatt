@@ -7,16 +7,13 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system}
 body{background:#f2f4f7;padding:18px;max-width:420px;margin:0 auto}
-
 /* 通用面板 */
 .panel{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
 h3{margin-bottom:14px;color:#222}
-
 /* 输入框与按钮 */
-input{width:100%;padding:11px;border:1px solid #d2d6dc;border-radius:7px;margin:7px 0;font-size:16px}
+input, select{width:100%;padding:11px;border:1px solid #d2d6dc;border-radius:7px;margin:7px 0;font-size:16px}
 button{width:100%;padding:11px;border:none;border-radius:7px;background:#2169d8;color:#fff;font-size:16px;cursor:pointer;margin-top:6px}
 button:active{opacity:0.8}
-
 /* 密钥条目 */
 .list-item{
     padding:12px;
@@ -36,35 +33,79 @@ button:active{opacity:0.8}
     background:#e53e3e;
     font-size:13px;
 }
-
 /* 验证码显示 */
 .code-display{font-size:46px;text-align:center;margin:20px 0;letter-spacing:5px;font-weight:bold}
 .time-text{text-align:center;color:#555}
+.lang-wrap{margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.lang-wrap label{white-space:nowrap}
 </style>
 </head>
 <body>
+<!-- 语言选择 -->
+<div class="panel lang-wrap">
+    <label id="langLabel">语言 Language：</label>
+    <select id="langSelect">
+        <option value="zh">中文</option>
+        <option value="en">English</option>
+        <option value="en-US">English (US)</option>
+    </select>
+</div>
 
 <!-- 添加密钥面板 -->
 <div class="panel">
-<h3>添加密钥</h3>
+<h3 id="panelAddTitle">添加密钥</h3>
 <input type="text" id="accName" placeholder="账号名称">
 <input type="text" id="secretKey" placeholder="Base32密钥">
 <button id="addBtn">添加</button>
 </div>
-
 <!-- 密钥列表面板 -->
 <div class="panel">
-<h3>密钥列表</h3>
+<h3 id="panelListTitle">密钥列表</h3>
 <div id="keyList"></div>
 </div>
-
 <!-- 验证码显示面板 -->
 <div class="panel">
 <div class="code-display" id="codeOutput">------</div>
-<div class="time-text">剩余：<span id="countdown">30</span> 秒</div>
+<div class="time-text"><span id="remainText">剩余</span>：<span id="countdown">30</span> <span id="secText">秒</span></div>
 </div>
-
 <script>
+// 多语言文本配置
+const langPack = {
+    zh: {
+        langLabel: "语言 Language：",
+        panelAddTitle: "添加密钥",
+        accNamePlaceholder: "账号名称",
+        secretKeyPlaceholder: "Base32密钥",
+        addBtnText: "添加",
+        panelListTitle: "密钥列表",
+        delBtnText: "删除",
+        remainText: "剩余",
+        secText: "秒"
+    },
+    en: {
+        langLabel: "Language：",
+        panelAddTitle: "Add Secret",
+        accNamePlaceholder: "Account Name",
+        secretKeyPlaceholder: "Base32 Secret Key",
+        addBtnText: "Add",
+        panelListTitle: "Secret List",
+        delBtnText: "Delete",
+        remainText: "Remaining",
+        secText: "sec"
+    },
+    "en-US": {
+        langLabel: "Language：",
+        panelAddTitle: "Add Secret",
+        accNamePlaceholder: "Account Name",
+        secretKeyPlaceholder: "Base32 Secret Key",
+        addBtnText: "Add",
+        panelListTitle: "Secret List",
+        delBtnText: "Delete",
+        remainText: "Remaining",
+        secText: "seconds"
+    }
+};
+
 // DOM元素获取
 const accName = document.getElementById("accName");
 const secretKey = document.getElementById("secretKey");
@@ -72,11 +113,34 @@ const addBtn = document.getElementById("addBtn");
 const keyListDom = document.getElementById("keyList");
 const codeOutput = document.getElementById("codeOutput");
 const countdown = document.getElementById("countdown");
+const langSelect = document.getElementById("langSelect");
+// 文字节点
+const langLabel = document.getElementById("langLabel");
+const panelAddTitle = document.getElementById("panelAddTitle");
+const panelListTitle = document.getElementById("panelListTitle");
+const remainText = document.getElementById("remainText");
+const secText = document.getElementById("secText");
 
 // 全局数据
 let keyList = JSON.parse(localStorage.getItem("totpKeys")) || [];
 let currentIndex = -1;
 let timer = null;
+let currentLang = localStorage.getItem("appLang") || "zh";
+
+// 切换语言渲染
+function applyLang(lang) {
+    const t = langPack[lang];
+    langLabel.textContent = t.langLabel;
+    panelAddTitle.textContent = t.panelAddTitle;
+    accName.placeholder = t.accNamePlaceholder;
+    secretKey.placeholder = t.secretKeyPlaceholder;
+    addBtn.textContent = t.addBtnText;
+    panelListTitle.textContent = t.panelListTitle;
+    remainText.textContent = t.remainText;
+    secText.textContent = t.secText;
+    // 重新渲染列表里的删除按钮
+    renderList();
+}
 
 // 1. Base32 解码
 function base32Decode(str) {
@@ -94,7 +158,6 @@ function base32Decode(str) {
     }
     return new Uint8Array(bytes);
 }
-
 // 2. 标准 TOTP 验证码生成（浏览器原生 crypto 接口）
 async function generateCode(secret) {
     const keyBytes = base32Decode(secret);
@@ -115,7 +178,6 @@ async function generateCode(secret) {
                 | (arr[offset+3] & 0xFF);
     return (codeNum % 1000000).toString().padStart(6, "0");
 }
-
 // 3. 添加密钥
 function addSecret() {
     const name = accName.value.trim();
@@ -127,7 +189,6 @@ function addSecret() {
     secretKey.value = "";
     renderList();
 }
-
 // 4. 删除密钥
 function deleteItem(index, event) {
     event.stopPropagation();
@@ -141,9 +202,9 @@ function deleteItem(index, event) {
     }
     renderList();
 }
-
 // 5. 渲染密钥列表
 function renderList() {
+    const t = langPack[currentLang];
     keyListDom.innerHTML = "";
     keyList.forEach((item, idx) => {
         const div = document.createElement("div");
@@ -154,7 +215,7 @@ function renderList() {
         
         const delBtn = document.createElement("button");
         delBtn.className = "del-btn";
-        delBtn.textContent = "删除";
+        delBtn.textContent = t.delBtnText;
         delBtn.onclick = (e) => deleteItem(idx, e);
         
         div.appendChild(nameSpan);
@@ -168,7 +229,6 @@ function renderList() {
         keyListDom.appendChild(div);
     });
 }
-
 // 6. 刷新验证码
 async function refreshCode() {
     if (currentIndex < 0) {
@@ -177,7 +237,6 @@ async function refreshCode() {
     }
     codeOutput.textContent = await generateCode(keyList[currentIndex].secret);
 }
-
 // 7. 启动30秒倒计时
 function startClock() {
     clearInterval(timer);
@@ -194,8 +253,18 @@ function startClock() {
     }, 1000);
 }
 
+// 语言切换事件
+langSelect.addEventListener("change", function() {
+    currentLang = this.value;
+    localStorage.setItem("appLang", currentLang);
+    applyLang(currentLang);
+});
+
 // 初始化绑定
 addBtn.onclick = addSecret;
+// 加载保存语言
+langSelect.value = currentLang;
+applyLang(currentLang);
 renderList();
 startClock();
 </script>
