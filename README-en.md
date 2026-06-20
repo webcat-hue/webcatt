@@ -1,4 +1,4 @@
-![界面预览](https://github.com/webcat-hue/webcatt/blob/f2cf1684d10150679f3f154b69d764a94db018a0/image/2.JPG)
+<img src="https://github.com/webcat-hue/webcatt/blob/f2cf1684d10150679f3f154b69d764a94db018a0/image/2.JPG" width="420" style="pointer-events: none;">
 ## 1. Function Introduction
 This locally‑running front‑end tool generates TOTP dynamic verification codes following the RFC6238 standard. It works the same as Google Authenticator and Microsoft Authenticator.
 
