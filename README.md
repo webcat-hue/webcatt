@@ -4,9 +4,16 @@
 本工具为纯前端本地运行的TOTP动态验证码生成器，遵循 RFC6238 标准，算法与Google Authenticator、Microsoft Authenticator通用。
 所有密钥数据仅存储在浏览器本地 localStorage，不会上传至任何服务器，无需联网即可生成验证码。
 支持多账号密钥管理、30秒自动刷新6位动态码、倒计时提示、密钥删除功能。
- # Select Language
 
-[中文](README-zh.md) [English](README-en.md) [日本語](README-ja.md)
+
+# 选择语言 / Select Language / 言語選択
+
+&nbsp;&nbsp;[中文](README-zh.md)&nbsp;&nbsp;|&nbsp;&nbsp;
+[English](README-en.md)&nbsp;&nbsp;|&nbsp;&nbsp;
+[日本語](README-ja.md)
+
+
+
 二、使用步骤
  
 1. 获取平台Base32密钥
