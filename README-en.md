@@ -4,6 +4,11 @@ This locally‑running front‑end tool generates TOTP dynamic verification code
 All keys are saved in browser localStorage locally. No data will be uploaded to servers. Codes can be generated without network access.
 It supports managing multiple accounts, 30‑second 6‑digit code refresh, countdown display and key deletion.
 
+Please select your language
+
+[中文](https://github.com/webcat-hue/webcatt/blob/main/README-zh.md) [English](https://github.com/webcat-hue/webcatt/blob/main/README-en.md)
+
+
 ## 2. Usage
 1. Get your Base32 key
 Enable two‑factor authentication on your service, select manual key entry and copy the Base32 string.
