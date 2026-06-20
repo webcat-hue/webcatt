@@ -8,7 +8,7 @@
 
 
 [中文](README-zh.md)
-[English](README-en.md) 
+[English](main/README%E2%80%91en.md) 
 [日本語](README-ja.md)
 
 
