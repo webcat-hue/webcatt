@@ -1,4 +1,10 @@
 # webcatt
+# 选择语言
+<div style="display:flex;gap:40px;justify-content:center;font-size:20px;padding:20px;">
+<a href="README‑zh.md">中文</a>
+<a href="README‑en.md">English</a>
+<a href="README‑ja.md">日本語</a>
+</div>
 一、功能简介
  
 本工具为纯前端本地运行的TOTP动态验证码生成器，遵循 RFC6238 标准，算法与Google Authenticator、Microsoft Authenticator通用。
