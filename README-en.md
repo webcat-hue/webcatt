@@ -1,5 +1,3 @@
-# TOTP Verification Code Generator
-
 ## 1. Function Introduction
 This locally‑running front‑end tool generates TOTP dynamic verification codes following the RFC6238 standard. It works the same as Google Authenticator and Microsoft Authenticator.
 
@@ -16,6 +14,16 @@ Fill in the account name such as GitHub or Steam. Paste your Base32 key and save
 3. View verification code
 Tap an account entry to view the current code and its remaining valid time.
 
+4. Delete key
+Tap the delete button next to the account to remove its key.
+
+## 3. Notes
+1. Saved keys will disappear after clearing cache, switching browsers or closing incognito tabs. Back up important keys.
+2. Only standard Base32 keys are supported. Keys containing 0,1,8,9 cannot be decoded.
+3. Codes refresh every thirty seconds. Expired codes cannot be used for login.
+
+## 4. Disclaimer
+Users take full responsibility for any losses caused by using this code.
 4. Delete key
 Tap the delete button next to the account to remove its key.
 
