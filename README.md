@@ -8,7 +8,7 @@
 
 
 请选择您的语言
-[中文](https://github.com/webcat-hue/webcatt/blob/main/README-zh.md) [English](https://github.com/webcat-hue/webcatt/blob/main/README-en.md)
+[中文](https://github.com/webcat-hue/webcatt/blob/main/README.md) [English](https://github.com/webcat-hue/webcatt/blob/main/README-en.md)
 
 二、使用步骤
  
