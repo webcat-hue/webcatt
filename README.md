@@ -7,8 +7,9 @@
 
 
 
-[中文](https://ghproxy.com/https://github.com/webcat-hue/webcatt/blob/main/README-zh.md) [English](https://ghproxy.com/https://github.com/webcat-hue/webcatt/blob/main/README-en.md) [日本語](https://ghproxy.com/https://github.com/webcat-hue/webcatt/blob/main/README-ja.md)
+# Select Language
 
+[中文](https://github.com/webcat-hue/webcatt/blob/main/README-zh.md) [English](https://github.com/webcat-hue/webcatt/blob/main/README-en.md)
 
 二、使用步骤
  
