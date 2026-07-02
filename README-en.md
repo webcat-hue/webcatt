@@ -40,3 +40,7 @@ Tap the delete button next to the account to remove its key.
 
 ## 4. Disclaimer
 Users take full responsibility for any losses caused by using this code.
+
+# Download
+
+[![网猫](https://img.shields.io/badge/codeberg-V1.0-0078d4?labelColor=555&style=flat-square)](https://codeberg.org/webcat_dd/webcattt.git)
