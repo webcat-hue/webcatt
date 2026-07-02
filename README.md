@@ -34,3 +34,7 @@
 3. 验证码每30秒刷新一次，过期验证码无法用于登录验证，使用时请确认倒计时未结束。
  四.
  使用我们的代码时损失自主承担
+ 
+# 下载
+
+[![网猫](https://img.shields.io/badge/codeberg-V1.0-0078d4?labelColor=555&style=flat-square)](https://codeberg.org/webcat_dd/webcattt.git)
